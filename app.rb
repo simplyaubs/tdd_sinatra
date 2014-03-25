@@ -29,7 +29,12 @@ class App < Sinatra::Application
   end
 
   get '/Items/:id' do
+    if settings.menu_hash.has_key?(params[:id].to_i)
     erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
+    else
+      status  404
+      erb :page_not_found
+    end
   end
 
   get '/Items/:id/edit' do
