@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Items</title>
+</head>
+<body>
+<form action="/Items/forms" method="get">
+  <input type="submit" value="Edit Items">
+</form>
+<ul>
+  <% menu.each do |id, name| %>
+    <li><%= name %> <a href="/Items/<%= id %>"> Show Item</a></li>
+  <% end %>
+</ul>
+</body>
+</html>

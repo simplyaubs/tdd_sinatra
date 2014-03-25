@@ -5,12 +5,17 @@ require_relative '../app'
 Capybara.app = App
 
 feature "Menu Site" do
-  scenario "User can open the homepage" do
+  scenario "User can add items" do
     visit '/'
-
     expect(page).to have_content("Welcome to our Menu")
 
     click_on "Items"
     expect(page).to_not have_content("Pizza")
+    click_on "Edit Items"
+    fill_in "name", :with => "Pizza"
+    choose "Add Item"
+    click_on "Submit"
+    expect(page).to have_content("Pizza")
+
   end
 end
