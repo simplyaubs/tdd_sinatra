@@ -13,7 +13,6 @@ feature "Menu Site" do
     expect(page).to_not have_content("Pizza")
     click_on "Add Item"
     fill_in "name", :with => "Pizza"
-    choose "Add Item"
     click_on "Submit"
     expect(page).to have_content("Pizza")
 
@@ -22,14 +21,11 @@ feature "Menu Site" do
 
     click_on "Edit Item"
     fill_in "name", :with => "Pasta"
-    choose "Rename Item"
     click_on "Submit"
     expect(page).to have_content("Pasta")
     expect(page).to_not have_content("Pizza")
 
-    click_on "Edit Item"
-    choose "Delete Item"
-    click_on "Submit"
+    click_on "Delete Item"
     expect(page).to_not have_content("Pasta")
   end
 end

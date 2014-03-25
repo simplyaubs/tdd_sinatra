@@ -1,10 +1,15 @@
-h1 {font-family: Georgia, sans-serif;
-    color: white}
-a {color: #c092ff;
+h1 {
+    font-family: Georgia, sans-serif;
+    color: white
+}
+
+a {
+    color: #c092ff;
 
 }
 
-body { background-color: #2b1d49
+body {
+    background-color: #2b1d49
 
 }
 
@@ -12,6 +17,7 @@ li {
     color: white;
     font-size: 2em
 }
+
 form {
     color: white;
 }

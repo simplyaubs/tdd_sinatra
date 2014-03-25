@@ -10,6 +10,10 @@
 <form action="/Items/<%= id %>/edit" method="get">
   <input type="submit" value="Edit Item">
 </form>
+<form action="/Items" method="post">
+  <input type="hidden" name="_method" value="delete" >
+  <input type="submit" value="Delete Item">
+</form>
 </body>
 </html>
 

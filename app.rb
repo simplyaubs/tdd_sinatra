@@ -1,6 +1,6 @@
 require 'sinatra/base'
 
-class App < Sinatra::Base
+class App < Sinatra::Application
 
   set :menu_hash, {}
 
@@ -23,9 +23,7 @@ class App < Sinatra::Base
     else
       id = settings.menu_hash.keys[-1] + 1
     end
-    if params[:item_option] == 'add'
-      settings.menu_hash[id] = name
-    end
+    settings.menu_hash[id] = name
 
     redirect '/Items'
   end
@@ -39,12 +37,12 @@ class App < Sinatra::Base
   end
 
   post '/Items/:id' do
-    if params[:item_option] == 'rename'
-      settings.menu_hash[params[:id].to_i] = params[:name]
-      redirect "/Items/#{params[:id]}"
-    elsif params[:item_option] == 'delete'
-      settings.menu_hash.delete(params[:id].to_i)
-      redirect '/Items'
-    end
+    settings.menu_hash[params[:id].to_i] = params[:name]
+    redirect "/Items/#{params[:id]}"
+  end
+
+  delete '/Items' do
+    settings.menu_hash.delete(params[:id].to_i)
+    redirect '/Items'
   end
 end
