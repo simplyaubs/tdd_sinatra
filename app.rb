@@ -41,6 +41,8 @@ class App < Sinatra::Base
   post '/Items/:id' do
     if params[:item_option] == 'rename'
       settings.menu_hash[params[:id].to_i] = params[:name]
+    elsif params[:item_option] == 'delete'
+      settings.menu_hash.delete(params[:id].to_i)
     end
     erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
   end

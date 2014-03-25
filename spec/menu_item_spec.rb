@@ -5,7 +5,7 @@ require_relative '../app'
 Capybara.app = App
 
 feature "Menu Site" do
-  scenario "User can add items" do
+  scenario "User can manage items in a menu" do
     visit '/'
     expect(page).to have_content("Welcome to our Menu")
 
@@ -25,9 +25,11 @@ feature "Menu Site" do
     choose "Rename Item"
     click_on "Submit"
     expect(page).to have_content("Pasta")
-    #renames item
-    #deletes item
+    expect(page).to_not have_content("Pizza")
 
-
+    click_on "Edit Item"
+    choose "Delete Item"
+    click_on "Submit"
+    expect(page).to_not have_content("Pasta")
   end
 end
