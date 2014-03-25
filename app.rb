@@ -27,7 +27,7 @@ class App < Sinatra::Base
       settings.menu_hash[id] = name
     end
 
-    erb :items, :locals => {:menu => settings.menu_hash}
+    redirect '/Items'
   end
 
   get '/Items/:id' do
@@ -41,9 +41,10 @@ class App < Sinatra::Base
   post '/Items/:id' do
     if params[:item_option] == 'rename'
       settings.menu_hash[params[:id].to_i] = params[:name]
+      redirect "/Items/#{params[:id]}"
     elsif params[:item_option] == 'delete'
       settings.menu_hash.delete(params[:id].to_i)
+      redirect '/Items'
     end
-    erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
   end
 end
