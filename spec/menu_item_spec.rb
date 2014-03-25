@@ -17,5 +17,12 @@ feature "Menu Site" do
     click_on "Submit"
     expect(page).to have_content("Pizza")
 
+    click_on "Show Item"
+    expect(page).to have_content("Pizza")
+    #shows item contents
+    #renames item
+    #deletes item
+
+
   end
 end

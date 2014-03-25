@@ -30,4 +30,8 @@ class App < Sinatra::Base
 
     erb :items, :locals => {:menu => settings.menu_hash}
   end
+
+  get '/Items/:id' do
+    erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
+  end
 end
