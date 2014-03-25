@@ -13,18 +13,17 @@ class App < Sinatra::Base
   end
 
   get '/Items/forms' do
-    erb :forms
+    erb :add_form
   end
 
   post '/Items' do
     name = params[:name]
-    option = params[:item_option]
     if settings.menu_hash.empty?
       id = 0
     else
       id = settings.menu_hash.keys[-1] + 1
     end
-    if option == 'add'
+    if params[:item_option] == 'add'
       settings.menu_hash[id] = name
     end
 
@@ -32,6 +31,17 @@ class App < Sinatra::Base
   end
 
   get '/Items/:id' do
+    erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
+  end
+
+  get '/Items/:id/edit' do
+    erb :edit_form, :locals => {:id => params[:id]}
+  end
+
+  post '/Items/:id' do
+    if params[:item_option] == 'rename'
+      settings.menu_hash[params[:id].to_i] = params[:name]
+    end
     erb :item_details, :locals => {:menu => settings.menu_hash, :id => params[:id]}
   end
 end

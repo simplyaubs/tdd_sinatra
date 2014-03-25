@@ -5,6 +5,9 @@
 </head>
 <body>
 <h1>Item <%= id %>: <%= menu[id.to_i] %></h1>
+<form action="/Items/<%= id %>/edit" method="get">
+  <input type="submit" value="Edit Item">
+</form>
 </body>
 </html>
 
